@@ -2,10 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .wrapper {
+    @apply mx-auto px-4 max-w-7xl
+  }
+
+  .features-list {
+    margin-left: calc(32px * -1);
+    margin-right: calc(32px * -1);
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --background-brand: #1a1a1a
+
+  --background-navbar: linear-gradient(0deg, #1a1a1a00, #1a1a1a60, #0a0a0a75, #0a0a0a);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,10 +32,5 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #1a1a1a
 }
