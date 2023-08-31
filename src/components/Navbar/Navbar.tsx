@@ -4,7 +4,8 @@ import { usePreventScroll } from '@/hooks';
 import { useDisclosure } from '@/hooks/use-disclosure';
 import Image from 'next/image';
 import { useState } from 'react';
-import { AiFillCaretDown, AiFillCaretUp, AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { ListItem } from './ListItem';
 
 const MobileNavigation = () => {
   const [expandedItems, setExpandedItems] = useState({
@@ -22,60 +23,46 @@ const MobileNavigation = () => {
   return (
     <nav>
       <ul className="gap-2 flex flex-col">
-        <li className="py-2 px-8">
-          <a className="list" href="#">
-            Features
-          </a>
-        </li>
-        <li className="py-2 px-8">
-          <a className="list" href="#">
-            Pricing
-          </a>
-        </li>
-        <li className="py-2 px-8">
-          <a className="list" href="#">
-            Download
-          </a>
-        </li>
-        <li className="py-2 px-8">
-          <div className="list flex items-center gap-1" onClick={() => setExpansion('company')}>
-            <a href="#">Company</a>
-            {expandedItems.company ? <AiFillCaretUp /> : <AiFillCaretDown />}
-          </div>
-        </li>
+        <ListItem className="py-2 px-8">Features</ListItem>
+        <ListItem className="py-2 px-8">Pricing</ListItem>
+        <ListItem className="py-2 px-8">Download</ListItem>
+        <ListItem
+          className="py-2 px-8"
+          withIcon
+          isOpen={expandedItems.company}
+          onClick={() => setExpansion('company')}
+        >
+          Company
+        </ListItem>
+        <ListItem></ListItem>
         {expandedItems.company && (
           <ul className="gap-2 ml-8 mt-2 flex flex-col">
             {companyLinkItems.map((i, index) => (
-              <li key={index} className="py-2 px-8">
-                <a className="list" href="#">
-                  {i}
-                </a>
-              </li>
+              <ListItem key={index} className="py-2 px-8">
+                {i}
+              </ListItem>
             ))}
           </ul>
         )}
-        <li className="py-2 px-8">
-          <div className="list flex items-center gap-1" onClick={() => setExpansion('support')}>
-            <a href="#">Support</a>
-            {expandedItems.support ? <AiFillCaretUp /> : <AiFillCaretDown />}
-          </div>
-        </li>
+        <ListItem
+          className="py-2 px-8"
+          withIcon
+          isOpen={expandedItems.support}
+          onClick={() => setExpansion('support')}
+        >
+          Support
+        </ListItem>
+        <ListItem></ListItem>
         {expandedItems.support && (
           <ul className="gap-2 ml-8 mt-2 flex flex-col">
             {supportLinkItems.map((i, index) => (
-              <li key={index} className="py-2 px-8">
-                <a className="list" href="#">
-                  {i}
-                </a>
-              </li>
+              <ListItem key={index} className="py-2 px-8">
+                {i}
+              </ListItem>
             ))}
           </ul>
         )}
-        <li className="py-2 px-8">
-          <a className="list" href="#">
-            Login
-          </a>
-        </li>
+        <ListItem className="py-2 px-8">Login</ListItem>
       </ul>
     </nav>
   );
@@ -102,65 +89,44 @@ export const Navbar = () => {
           </span>
           <nav className="hidden lg:block">
             <ul className="flex items-center gap-8">
-              <li>
-                <a className="list" href="#">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a className="list" href="#">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a className="list" href="#">
-                  Download
-                </a>
-              </li>
-              <div>
-                <Popover
-                  renderTrigger={open => (
-                    <li className="focus-visible:text-brand">
-                      <div className="list flex items-center gap-1">
-                        Company
-                        {open ? <AiFillCaretUp /> : <AiFillCaretDown />}
-                      </div>
-                    </li>
-                  )}
-                >
-                  {close => (
-                    <ul className="flex flex-col gap-2 pb-4">
-                      {companyLinkItems.map((item, index) => (
-                        <li key={index} className="nav-list" onClick={close}>
-                          <span className="ml-2">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </Popover>
-              </div>
-              <div>
-                <Popover
-                  renderTrigger={open => (
-                    <li className="focus-visible:text-brand">
-                      <div className="listflex items-center gap-2">
-                        Support
-                        {open ? <AiFillCaretUp /> : <AiFillCaretDown />}
-                      </div>
-                    </li>
-                  )}
-                >
-                  {close => (
-                    <ul className="flex flex-col gap-2 pb-4">
-                      {supportLinkItems.map((item, index) => (
-                        <li key={index} className="nav-list" onClick={close}>
-                          <span className="ml-2">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </Popover>
-              </div>
+              <ListItem>Features</ListItem>
+              <ListItem>Pricing</ListItem>
+              <ListItem>Download</ListItem>
+              <Popover
+                renderTrigger={open => (
+                  <ListItem className="focus-visible:text-brand" withIcon isOpen={open}>
+                    Company
+                  </ListItem>
+                )}
+              >
+                {close => (
+                  <ul className="flex flex-col gap-2 pb-4">
+                    {companyLinkItems.map((item, index) => (
+                      <ListItem key={index} onClick={close} className="nav-list hover:text-white">
+                        <span className="ml-2">{item}</span>
+                      </ListItem>
+                    ))}
+                  </ul>
+                )}
+              </Popover>
+
+              <Popover
+                renderTrigger={open => (
+                  <ListItem className="focus-visible:text-brand" withIcon isOpen={open}>
+                    Support
+                  </ListItem>
+                )}
+              >
+                {close => (
+                  <ul className="flex flex-col gap-2 pb-4">
+                    {supportLinkItems.map((item, index) => (
+                      <ListItem key={index} onClick={close} className="nav-list hover:text-white">
+                        <span className="ml-2">{item}</span>
+                      </ListItem>
+                    ))}
+                  </ul>
+                )}
+              </Popover>
             </ul>
           </nav>
           <div className="flex items-center gap-4">
