@@ -14,7 +14,7 @@ type FeatureCardProps = {
 
 export const FeatureCard = ({ name, heading, children }: FeatureCardProps) => {
   return (
-    <li className="w-full px-8 py-4">
+    <li className="w-full sm:w-6/12 lg:w-3/12 px-8 py-4">
       <div style={{ padding: '0px 20%' }}>
         <div className="inline-block align-top relative overflow-hidden">
           <div className="block max-w-xs">
@@ -35,8 +35,8 @@ export const FeatureCard = ({ name, heading, children }: FeatureCardProps) => {
         </div>
       </div>
       <div className="m-2" />
-      <h2 className="text-center text-xl font-semibold tracking-tight mb-4">{heading}</h2>
-      <div className="text-center text-base leading-6">{children}</div>
+      <h2 className="text-center text-h3 font-semibold tracking-tight mb-4">{heading}</h2>
+      <div className="text-center text-button leading-normal">{children}</div>
       <div className="center flex flex-col text-center" />
     </li>
   );

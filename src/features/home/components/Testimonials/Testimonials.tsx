@@ -26,15 +26,17 @@ const rubik = Rubik({ variable: '--font-rubik', subsets: ['latin'] })
 
 export const Testimonials = () => {
   return (
-    <section className="py-4">
-      <div className="wrapper max-w-5xl">
+    <section className="py-4 sm:py-8">
+      <div className="wrapper lg:px-8 max-w-5xl">
         <div className="flex items-center flex-col text-center">
-          <h2 className={`text-2xl mb-4 tracking-tight font-semibold ${rubik.className}`}>Used by the world`&apos;`s most innovative teams</h2>
+          <h2 className={`text-sectionHead mb-4 tracking-tight font-semibold ${rubik.className}`}>
+            Used by the world&apos;s most innovative teams
+          </h2>
         </div>
         <div className="m-8" />
-        <ul className="list-none gap-4 flex flex-wrap flex-col items-start">
-          {testimonials.map((t) => (
-            <TestimonialCard key={t.id} author={t.author} quote={t.quote}/>
+        <ul className="list-none gap-4 flex flex-wrap flex-col sm:flex-row items-start">
+          {testimonials.map(t => (
+            <TestimonialCard key={t.id} author={t.author} quote={t.quote} />
           ))}
         </ul>
       </div>

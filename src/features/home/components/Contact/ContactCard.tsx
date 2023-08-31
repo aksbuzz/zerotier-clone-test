@@ -16,21 +16,23 @@ type ContactCardProps = {
 
 export const ContactCard = ({ name, heading, description, renderButton }: ContactCardProps) => {
   return (
-    <div className="wrapper">
-      <section className="w-full py-4">
+    <div className="wrapper lg:px-8">
+      <section className="w-full py-4 sm:py-8">
         <div className="text-white bg-primary-blue rounded-3xl overflow-hidden p-8 w-full">
-          <div className="flex flex-col items-center gap-4">
-            <div className="py-16 w-full">
-              <h2 className={`text-2xl ${rubik.className} font-semibold tracking-tight mb-4`}>
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className={`py-16 w-full ${name === 'sales' ? 'sm:order-1' : ''}`}>
+              <h2
+                className={`text-sectionHead ${rubik.className} font-semibold tracking-tight mb-4`}
+              >
                 {heading}
               </h2>
-              <div className="text-lg font-normal leading-6 mb-4">{description}</div>
+              <div className="text-para font-normal leading-normal mb-4">{description}</div>
               <div className="m-8" />
-              <ul className="my-2 list-none flex flex-col items-center gap-4">
+              <ul className="my-2 list-none flex flex-col sm:flex-row items-center gap-4">
                 <li>{renderButton()}</li>
               </ul>
             </div>
-            <div className="flex flex-col text-center items-center">
+            <div className="flex flex-col text-center items-center sm:w-6/12">
               <div className="inline-block align-top relative overflow-hidden">
                 <div className="block max-w-xs">
                   <Image
@@ -39,7 +41,7 @@ export const ContactCard = ({ name, heading, description, renderButton }: Contac
                     src={
                       {
                         ci: ciImage,
-                        sales: salesImage
+                        sales: salesImage,
                       }[name]
                     }
                     alt="user-icon"

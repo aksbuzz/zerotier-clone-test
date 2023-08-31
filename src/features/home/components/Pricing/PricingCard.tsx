@@ -46,9 +46,9 @@ export const PricingCard = ({
             height={64}
           />
         </div>
-        <h3 className="text-xl font-bold tracking-tight mb-4">{title}</h3>
-        <div className="text-lg font-medium tracking-normal text-center leading-6 mb-4">{subtitle}</div>
-        <div className="leading-6 text-base">{children}</div>
+        <h3 className="text-h3 font-bold tracking-tight mb-4">{title}</h3>
+        <div className="text-citation font-medium tracking-normal text-center leading-normal mb-4">{subtitle}</div>
+        <div className="leading-normal text-citation">{children}</div>
         <div className="m-2" />
         <ul className="my-2 list-none flex flex-col items-center gap-4">
           <li>{renderButton()}</li>
